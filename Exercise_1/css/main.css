@@ -1,0 +1,14 @@
+.welcome-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: blue;
+}
+
+.welcome-screen .white-block {
+    width: 200px;
+    height: 200px;
+    background-color: white;
+}
