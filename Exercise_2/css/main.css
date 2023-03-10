@@ -95,13 +95,19 @@ li {
     transition: opacity 230ms;
 }
 
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
 .popup-content {
     position: relative;
-    width: 50%;
+    width: 80%;
+    max-width: 500px;
     min-width: 280px;
     margin-left: auto;
     margin-right: auto;
-    padding: 2em;
+    padding: 3em;
     border-radius: 10px;
     background-color: var(--maincolor);
 }
