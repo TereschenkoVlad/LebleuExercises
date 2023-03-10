@@ -1,6 +1,13 @@
 <?php
+$isValidName = true;
+$personName = '';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $personName = $_POST["name"];
+
+    if (strlen($personName) < 3 || strlen($personName) > 25) {
+        $isValidName = false;
+    }
 }
 ?>
 
@@ -18,11 +25,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <section class="welcome-section mt-5">
     <div class="container">
         <div class="col-md-8">
-            <?php if (empty($personName)) { ?>
+            <?php if (empty($personName) || !$isValidName) { ?>
                 <form action="" method="POST">
                     <div class="mb-4">
                         <label for="nameInput">Name</label>
-                        <input type="text" name="name" class="form-control" id="nameInput" aria-describedby="nameHelp" placeholder="Enter name">
+                        <input
+                                type="text"
+                                name="name"
+                                class="form-control <?php echo $isValidName ? '' : 'is-invalid'; ?>"
+                                id="nameInput"
+                                value="<?php echo $personName ?: '' ?>"
+                                aria-describedby="nameHelp"
+                                placeholder="Enter name"
+                                required
+                        >
+                        <?php if (!$isValidName) { ?>
+                            <div class="invalid-feedback">
+                                The name must have at least 3 characters and cannot be longer than 25 characters
+                            </div>
+                        <?php } ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
